@@ -19,12 +19,12 @@ static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeNorm] = { col_gray3, col_gray1, "#000000" },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 static const unsigned int alphas[][3]      = {
     /*               fg      bg        border*/
-  [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+  [SchemeNorm] = { OPAQUE, baralpha, 0x00 },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
@@ -74,7 +74,6 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-char *roficmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "librewolf", NULL };
 
@@ -85,10 +84,11 @@ static const Key keys[] = {
   { MODKEY,                       XK_Print,  spawn,          SHCMD ("flameshot full -p $HOME/Pictures/Screenshots/")},
   { MODKEY|ControlMask,           XK_Print,  spawn,          SHCMD ("flameshot gui -p $HOME/Pictures/Screenshots/")},
   { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
-  { MODKEY|ControlMask,           XK_l,      spawn,          SHCMD ("slock")}
-  ,
+  { MODKEY|ControlMask,           XK_l,      spawn,          SHCMD ("slock")},
+  { MODKEY,                       XK_r,      spawn,          SHCMD ("rofi -show run") },
+  
   /* OG */
-  { MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
+  { MODKEY,                       XK_p,      spawn,          SHCMD ("rofi -show drun") },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask,           XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
