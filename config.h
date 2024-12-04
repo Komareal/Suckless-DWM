@@ -38,14 +38,15 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	/* class          instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",         NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "LibreWolf",    NULL,     NULL,           0,         0,          0,          -1,        -1 },
+	{ "LibreWolf",    NULL,     NULL,           0,         0,          0,           0,        -1 },
   { "KeePassXC",	  NULL,		  NULL,       		1 << 7,		 0,		       0,           0,         0 },
   { "discord",	    NULL,		  NULL,       		1 << 8,		 0,		       0,           0,         0 },
 	{ "st",           NULL,     NULL,           0,         0,          1,           0,        -1 },
   { "Pentablet",    NULL,     NULL,           0,         0,          0,           0,        -1 },
 	{ NULL,           NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ NULL, NULL,     "XBindKey: Hit a key",    0,         0,          0,           1,        -1 }, 
 };
 
 /* layout(s) */
@@ -73,14 +74,20 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/bash", "-c", cmd, NULL } }
 
 /* commands */
+/* OG */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+
+/* Custom*/
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "librewolf", NULL };
 
+
+#include <X11/XF86keysym.h>
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-  /* Custom */  
+  /* Custom shortcuts */  
 	{ 0,                            XK_Print,  spawn,          SHCMD ("flameshot gui --clipboard")},
   { MODKEY,                       XK_Print,  spawn,          SHCMD ("flameshot full -p $HOME/Pictures/Screenshots/")},
   { MODKEY|ControlMask,           XK_Print,  spawn,          SHCMD ("flameshot gui -p $HOME/Pictures/Screenshots/")},
@@ -89,6 +96,17 @@ static const Key keys[] = {
   { MODKEY,                       XK_r,      spawn,          SHCMD ("rofi -show run") },
   { Mod1Mask,                     XK_Tab,    spawn,          SHCMD ("rofi -show window") },
   
+  /* Custom multimedia*/
+  { 0, XF86XK_AudioMute,          spawn,  SHCMD ("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+8 dwmblocks") },
+  { 0, XF86XK_AudioRaiseVolume,   spawn,  SHCMD ("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+; pkill -RTMIN+8 dwmblocks") },
+  { 0, XF86XK_AudioLowerVolume,   spawn,  SHCMD ("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-; pkill -RTMIN+8 dwmblocks") },
+  { 0, XF86XK_AudioMicMute,       spawn,  SHCMD ("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+  { 0, XF86XK_AudioNext,          spawn,  SHCMD ("playerctl next") },
+  { 0, XF86XK_AudioPrev,          spawn,  SHCMD ("playerctl prev") },
+  { 0, XF86XK_AudioPlay,          spawn,  SHCMD ("playerctl play-pause") },
+  { 0, XF86XK_MonBrightnessUp,    spawn,  {.v = (const char*[]){ "xbacklight", "-inc", "15", NULL } } },
+  { 0, XF86XK_MonBrightnessDown,  spawn,  {.v = (const char*[]){ "xbacklight", "-dec", "15", NULL } } },
+  { 0, XF86XK_Sleep,              spawn,  {.v = (const char*[]){ "sysact", NULL } } },
   /* OG */
   { MODKEY,                       XK_p,      spawn,          SHCMD ("rofi -show drun") },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
