@@ -104,8 +104,8 @@ static const Key keys[] = {
   { 0, XF86XK_AudioNext,          spawn,  SHCMD ("playerctl next") },
   { 0, XF86XK_AudioPrev,          spawn,  SHCMD ("playerctl prev") },
   { 0, XF86XK_AudioPlay,          spawn,  SHCMD ("playerctl play-pause") },
-  { 0, XF86XK_MonBrightnessUp,    spawn,  {.v = (const char*[]){ "light", "-A", "15", NULL } } },
-  { 0, XF86XK_MonBrightnessDown,  spawn,  {.v = (const char*[]){ "light", "-U", "15", NULL } } },
+  { 0, XF86XK_MonBrightnessUp,    spawn,  SHCMD ("light -A 15; pkill -RTMIN+12 dwmblocks") },
+  { 0, XF86XK_MonBrightnessDown,  spawn,  SHCMD ("light -U 15; pkill  -RTMIN+12 dwmblocks") },
   { 0, XF86XK_Sleep,              spawn,  {.v = (const char*[]){ "sysact", NULL } } },
   /* OG */
   { MODKEY,                       XK_p,      spawn,          SHCMD ("rofi -show drun") },
