@@ -9,8 +9,8 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "JetBrainsMono NF:size=10" };
-static const char dmenufont[]       = "JetBrainsMono NF:size=10";
+static const char *fonts[]          = { "JetBrainsMono NF:size=12" };
+static const char dmenufont[]       = "JetBrainsMono NF:size=12";
 static const char col_gray1[]       = "#2a2b2e";
 static const char col_gray2[]       = "#5a5a66";
 static const char col_gray3[]       = "#d2d6e8";
