@@ -88,13 +88,14 @@ static const char *browsercmd[]  = { "librewolf", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
   /* Custom shortcuts */  
-	{ 0,                            XK_Print,  spawn,          SHCMD ("flameshot gui --clipboard")},
-  { MODKEY,                       XK_Print,  spawn,          SHCMD ("flameshot full -p $HOME/Pictures/Screenshots/")},
-  { MODKEY|ControlMask,           XK_Print,  spawn,          SHCMD ("flameshot gui -p $HOME/Pictures/Screenshots/")},
-  { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
-  { MODKEY|ControlMask,           XK_l,      spawn,          SHCMD ("slock")},
-  { MODKEY,                       XK_r,      spawn,          SHCMD ("rofi -show run") },
-  { Mod1Mask,                     XK_Tab,    spawn,          SHCMD ("rofi -show window") },
+	{ 0,                            XK_Print,   spawn,          SHCMD ("flameshot gui --clipboard")},
+  { MODKEY,                       XK_Print,   spawn,          SHCMD ("flameshot full -p $HOME/Pictures/Screenshots/")},
+  { MODKEY|ControlMask,           XK_Print,   spawn,          SHCMD ("flameshot gui -p $HOME/Pictures/Screenshots/")},
+  { MODKEY,                       XK_b,       spawn,          {.v = browsercmd } },
+  { MODKEY|ControlMask,           XK_l,       spawn,          SHCMD ("slock")},
+  { MODKEY,                       XK_o,       spawn,          SHCMD ("rofi -show run") },
+  { Mod1Mask,                     XK_Tab,     spawn,          SHCMD ("rofi -show window") },
+  { MODKEY,                       XK_q,       spawn,          SHCMD ("thunar")},
   
   /* Custom multimedia*/
   { 0, XF86XK_AudioMute,          spawn,  SHCMD ("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; pkill -RTMIN+8 dwmblocks") },
