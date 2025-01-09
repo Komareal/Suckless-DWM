@@ -39,14 +39,14 @@ static const Rule rules[] = {
 	 */
 
 	/* class		instance  	title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",         	NULL,     	NULL,		0,         1,          0,           0,        -1 },
-	{ "LibreWolf",    	NULL,     	NULL,           0,         0,          0,           0,        -1 },
-  	{ "KeePassXC",	  	NULL,		NULL,       	0,	   0,	       0,           0,        -1 },
-  	{ "discord",	  	NULL,		NULL,       	1 << 8,	   0,	       0,           0,         0 },
-	{ "st",           	NULL,     	NULL,           0,         0,          1,           0,        -1 },
-  	{ "Pentablet",    	NULL,     	NULL,           0,         1,          0,           0,        -1 },
-	{ NULL,           	NULL,     	"Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ NULL, NULL,     	"XBindKey: Hit a key",    	0,         0,          0,           1,        -1 }, 
+  { "Gimp",         	NULL,     	NULL,		        0,          1,          0,           0,        -1 },
+	{ "LibreWolf",    	NULL,     	NULL,           0,          0,          0,           0,        -1 },
+  { "KeePassXC",	  	NULL,		    NULL,       	  0,	        0,	        0,           0,        -1 },
+  { "discord",	  	  NULL,		    NULL,       	  1 << 8,	    0,	        0,           0,         0 },
+	{ "st",           	NULL,     	NULL,           0,          0,          1,           0,        -1 },
+  { "Pentablet",    	NULL,     	NULL,           0,          1,          0,           0,        -1 },
+	{ NULL,           	NULL,     	"Event Tester", 0,          0,          0,           1,        -1 }, /* xev */
+	{ NULL, NULL,     	"XBindKey: Hit a key",    	0,          0,          0,           1,        -1 }, 
 };
 
 /* layout(s) */
@@ -95,6 +95,7 @@ static const Key keys[] = {
   { MODKEY|ControlMask,           XK_l,       spawn,          SHCMD ("slock")},
   { MODKEY,                       XK_o,       spawn,          SHCMD ("rofi -show run") },
   { Mod1Mask,                     XK_Tab,     spawn,          SHCMD ("rofi -show window") },
+  { MODKEY,                       XK_y,       spawn,          SHCMD ("youtube-music")},
   { MODKEY,                       XK_q,       spawn,          SHCMD ("thunar")},
   
   /* Custom multimedia*/
@@ -108,6 +109,7 @@ static const Key keys[] = {
   { 0, XF86XK_MonBrightnessUp,    spawn,  SHCMD ("light -A 15; pkill -RTMIN+12 dwmblocks") },
   { 0, XF86XK_MonBrightnessDown,  spawn,  SHCMD ("light -U 15; pkill  -RTMIN+12 dwmblocks") },
   { 0, XF86XK_Sleep,              spawn,  {.v = (const char*[]){ "sysact", NULL } } },
+
   /* OG */
   { MODKEY,                       XK_p,      spawn,          SHCMD ("rofi -show drun") },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
