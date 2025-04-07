@@ -25,8 +25,8 @@ static const int showsystray             = 1;   /* 0 means no systray */
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, "#000000" },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray1},
+	[SchemeSel]  = { col_gray4, col_gray2,  col_gray2  },
 };
 
 /* tagging */
@@ -91,6 +91,7 @@ static const Key keys[] = {
 	{ 0,                            XK_Print,   spawn,          SHCMD ("flameshot gui --clipboard")},
   { MODKEY,                       XK_Print,   spawn,          SHCMD ("flameshot full -p $HOME/Pictures/Screenshots/")},
   { MODKEY|ControlMask,           XK_Print,   spawn,          SHCMD ("flameshot gui -p $HOME/Pictures/Screenshots/")},
+  { ShiftMask,             XK_Print,   spawn,          SHCMD ("flameshot gui")},
   { MODKEY,                       XK_b,       spawn,          {.v = browsercmd } },
   { MODKEY|ControlMask,           XK_l,       spawn,          SHCMD ("slock")},
   { MODKEY,                       XK_o,       spawn,          SHCMD ("rofi -show run") },
