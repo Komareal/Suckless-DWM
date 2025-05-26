@@ -110,6 +110,7 @@ static const Key keys[] = {
   { 0, XF86XK_MonBrightnessUp,    spawn,  SHCMD ("light -A 5; pkill -RTMIN+12 dwmblocks") },
   { 0, XF86XK_MonBrightnessDown,  spawn,  SHCMD ("light -U 5; pkill  -RTMIN+12 dwmblocks") },
   { 0, XF86XK_Sleep,              spawn,  {.v = (const char*[]){ "sysact", NULL } } },
+  { 0, XK_s,                      spawn,  {.v = (const char*[]){ "sysact", NULL } } },
 
   /* OG */
   { MODKEY,                       XK_p,      spawn,          SHCMD ("rofi -show drun") },
